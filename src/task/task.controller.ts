@@ -7,10 +7,13 @@ import {
   Post,
   Put,
   Query,
+  UseGuards,
 } from '@nestjs/common';
 import { FindAllParameters, TaskDto } from './task.dto';
 import { TaskService } from './task.service';
+import { AuthGuard } from 'src/auth/auth.guard';
 
+@UseGuards(AuthGuard)
 @Controller('task')
 export class TaskController {
   constructor(private readonly taskService: TaskService) {}
@@ -20,7 +23,6 @@ export class TaskController {
     this.taskService.create(task);
   }
 
-  // Em @Param, obetemos todos os parâmetros passados na rota
   @Get('/:id')
   findById(@Param('id') id: string): TaskDto {
     return this.taskService.findById(id);
