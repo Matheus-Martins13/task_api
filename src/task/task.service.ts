@@ -63,7 +63,7 @@ export class TaskService {
     if (!foundTask) {
       throw new HttpException(
         `Task with id '${task.id}' not found`,
-        HttpStatus.BAD_REQUEST,
+        HttpStatus.NOT_FOUND,
       );
     }
 
@@ -76,7 +76,7 @@ export class TaskService {
     if (!result.affected) {
       throw new HttpException(
         `Task with id '${id}' not found`,
-        HttpStatus.BAD_REQUEST,
+        HttpStatus.NOT_FOUND,
       );
     }
   }

@@ -1,4 +1,9 @@
-import { ConflictException, Injectable } from '@nestjs/common';
+import {
+  ConflictException,
+  HttpException,
+  HttpStatus,
+  Injectable,
+} from '@nestjs/common';
 import { UserDto } from './user.dto';
 import { hashSync as bcryptHashSync } from 'bcrypt';
 import { InjectRepository } from '@nestjs/typeorm';
@@ -17,7 +22,7 @@ export class UsersService {
 
     if (userAlreadyRegistered) {
       throw new ConflictException(
-        `User '${newUser.username}' already registered `,
+        `User '${newUser.username}' already registered`,
       );
     }
 
@@ -42,5 +47,16 @@ export class UsersService {
       username: userFound.username,
       password: userFound.passwordHash,
     };
+  }
+
+  async remove(id: string) {
+    const result = await this.userRepository.delete(id);
+
+    if (!result.affected) {
+      throw new HttpException(
+        `Task with id '${id}' not found`,
+        HttpStatus.NOT_FOUND,
+      );
+    }
   }
 }
