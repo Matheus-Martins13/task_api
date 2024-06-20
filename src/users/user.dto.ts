@@ -19,6 +19,13 @@ export class UserDto {
 
   @IsString()
   @MaxLength(256)
-  @IsStrongPassword({ minLength: 5, minNumbers: 1 })
+  @IsStrongPassword()
   password: string;
+}
+
+export class UserRouteParameters {
+  @IsString()
+  @MinLength(3)
+  @MaxLength(256)
+  username: string;
 }
