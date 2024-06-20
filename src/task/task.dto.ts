@@ -37,8 +37,14 @@ export class TaskDto {
   expirationDate: Date;
 }
 
-export interface FindAllParameters {
+export class FindAllParameters {
+  @IsString()
+  @MinLength(3)
+  @MaxLength(256)
   title: string;
+
+  @IsEnum(TaskStatusEnum)
+  @IsOptional()
   status: string;
 }
 
