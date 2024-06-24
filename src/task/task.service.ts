@@ -1,5 +1,10 @@
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
-import { FindAllParameters, TaskDto, TaskStatusEnum } from './task.dto';
+import {
+  FindAllParameters,
+  ReturnTypeActionHttp,
+  TaskDto,
+  TaskStatusEnum,
+} from './task.dto';
 import { InjectRepository } from '@nestjs/typeorm';
 import { TaskEntity } from 'src/db/entities/task.entity';
 import { FindOptionsWhere, Like, Repository } from 'typeorm';
@@ -55,7 +60,7 @@ export class TaskService {
     return tasksFound.map((taskEntity) => this.mapEntityToDto(taskEntity));
   }
 
-  async update(id: string, task: TaskDto) {
+  async update(id: string, task: TaskDto): Promise<ReturnTypeActionHttp> {
     const foundTask = await this.taskRepository.findOne({
       where: { id },
     });
@@ -68,9 +73,11 @@ export class TaskService {
     }
 
     await this.taskRepository.update(id, this.mapDtoToEntity(task));
+
+    return { message: `Task with id ${task.id} successfully updated` };
   }
 
-  async remove(id: string) {
+  async remove(id: string): Promise<ReturnTypeActionHttp> {
     const result = await this.taskRepository.delete(id);
 
     if (!result.affected) {
@@ -79,6 +86,8 @@ export class TaskService {
         HttpStatus.NOT_FOUND,
       );
     }
+
+    return { message: `Task with id ${id} successfully updated` };
   }
 
   private mapEntityToDto(taskEntity: TaskEntity): TaskDto {
