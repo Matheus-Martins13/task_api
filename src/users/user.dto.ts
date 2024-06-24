@@ -29,7 +29,7 @@ export class UserDto {
 
   @ApiProperty({
     description: 'O password é a senha do usuário. Espera uma senha forte',
-    example: '550e8400-e29b-41d4-a716-446655440000',
+    example: 'Password@2024',
   })
   @IsString()
   @MaxLength(256)
