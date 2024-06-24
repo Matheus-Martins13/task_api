@@ -67,14 +67,14 @@ export class TaskService {
 
     if (!foundTask) {
       throw new HttpException(
-        `Task with id '${task.id}' not found`,
+        `Task with id '${id}' not found`,
         HttpStatus.NOT_FOUND,
       );
     }
 
     await this.taskRepository.update(id, this.mapDtoToEntity(task));
 
-    return { message: `Task with id ${task.id} successfully updated` };
+    return { message: `Task with id '${id}' successfully updated` };
   }
 
   async remove(id: string): Promise<ReturnTypeActionHttp> {
@@ -87,7 +87,7 @@ export class TaskService {
       );
     }
 
-    return { message: `Task with id ${id} successfully updated` };
+    return { message: `Task with id '${id}' successfully updated` };
   }
 
   private mapEntityToDto(taskEntity: TaskEntity): TaskDto {
