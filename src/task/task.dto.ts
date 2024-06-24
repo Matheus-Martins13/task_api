@@ -41,6 +41,7 @@ export class FindAllParameters {
   @IsString()
   @MinLength(3)
   @MaxLength(256)
+  @IsOptional()
   title: string;
 
   @IsEnum(TaskStatusEnum)
@@ -51,4 +52,8 @@ export class FindAllParameters {
 export class TaskRouteParameters {
   @IsUUID()
   id: string;
+}
+
+export interface ReturnTypeActionHttp {
+  message: string;
 }
