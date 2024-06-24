@@ -1,10 +1,10 @@
 {
-  "name": "task_project",
+  "name": "task_api",
   "version": "0.0.1",
-  "description": "",
-  "author": "",
+  "description": "Task API é um projeto de código aberto desenvolvido em Nestjs para compor o meu portifólio. É uma API simples, que no entanto utiliza recursos avançados e modernos, mostrando domínio abrangente em diversos recursos para oferecer uma aplicação segura, performática e escalável.",
+  "author": "Matheus Martins",
   "private": true,
-  "license": "UNLICENSED",
+  "license": "MIT",
   "scripts": {
     "build": "nest build",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
