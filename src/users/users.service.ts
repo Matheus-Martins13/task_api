@@ -54,7 +54,7 @@ export class UsersService {
 
     if (!result.affected) {
       throw new HttpException(
-        `Task with id '${id}' not found`,
+        `User with id '${id}' not found`,
         HttpStatus.NOT_FOUND,
       );
     }
