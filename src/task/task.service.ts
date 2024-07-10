@@ -87,7 +87,7 @@ export class TaskService {
       );
     }
 
-    return { message: `Task with id '${id}' successfully updated` };
+    return { message: `Task with id '${id}' successfully deleted` };
   }
 
   private mapEntityToDto(taskEntity: TaskEntity): TaskDto {
